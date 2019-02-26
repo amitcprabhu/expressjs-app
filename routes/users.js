@@ -10,12 +10,12 @@ var jsonParser = bodyParser.json()
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.json(users)
+  const result = req.query.id!=undefined ? users.filter(val => val.id == req.query.id):users;
+  res.json(result);
 });
 
 /* Post users listing. */
 router.post('/', jsonParser,function(req, res, next) {
-  console.log('user post')
   users.push(req.body);
   console.log(users);
   res.json(users)
